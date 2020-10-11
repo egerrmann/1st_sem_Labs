@@ -11,12 +11,53 @@ int min(int x, int y) {
     else
         return y;
 }
-
 int max(int x, int y) {
     if (x > y)
         return x;
     else
         return y;
+}
+
+int **fullMatrix(int **a1, int row0, int column0) {
+    srand(time(0));
+    if (column0 % 2 == 0) {
+        int** dArr = new int *[row0];
+        for (int i = 0; i < row0; ++i ) {
+            dArr[i] = new int[column0];
+        }
+        for (int i = 0; i < row0; ++i) {
+            for (int j = 0; j < column0; ++j) {
+                if ((i + j) % 2 == 0) {
+                    dArr[i][j] = 1;
+                }
+                else {
+                    dArr[i][j] = a1[i][j / 2];
+                }
+            }
+        }
+        return dArr;
+    }
+    if (column0 % 2 == 1) {
+        int **dArr = new int *[row0];
+        for (int i = 0; i < row0; ++i) {
+            dArr[i] = new int[column0];
+        }
+        for (int i = 0; i < row0; ++i) {
+            for (int j = 0; j < column0; ++j) {
+                if ((i + j) % 2 == 0) {
+                    dArr[i][j] = 1;
+                }
+                if (i % 2 == 0 && (i + j) % 2 != 0) {
+                    dArr[i][j] = a1[i][j / 2];
+                }
+                if (i % 2 == 1 && (i + j) % 2 != 0) {
+                    dArr[i][j] = a1[i][j / 2];
+                    dArr[i][column0 - 1] = rand() % 10 - 5;
+                }
+            }
+        }
+        return dArr;
+    }
 }
 
 int main() {
@@ -69,141 +110,52 @@ int main() {
         }
     }
     for (int i = 0; i < row; ++i) {
-        for (int j = 0; j < col1; ++j) {
-            if (column % 2 == 0) {
-                if (i % 2 == 0) {
-                    cout << "1  " << dArr[i][j] << "  ";
-                }
-                if (i % 2 == 1) {
-                    cout << dArr[i][j] << "  " << "1  ";
-                }
-            }
-            if (column % 2 == 1) {
-                if (i % 2 == 0 && j < col1 - 1) {
-                    cout << "1  " << dArr[i][j] << "  ";
-                }
-                if (i % 2 == 0 && j == col1 - 1) {
-                    cout << "1";
-                }
-                if (i % 2 == 1 && j == 0) {
-                    cout << dArr[i][j] << "  ";
-                }
-                if (i % 2 == 1 && j > 0) {
-                    cout << "1  " << dArr[i][j] << "  ";
-                }
-            }
+        for (int j = 0; j < column; ++j) {
+            cout << fullMatrix(dArr, row, column)[i][j] << "   ";
         }
         cout << endl;
     }
-
     cout << endl;
-
     int s = 0;
-    if (column % 2 == 0) {
-        for (int i = 0; i < row; ++i) {
-            for (int j = 0; j < col1; ++j) {
-                if (dArr[i][j] == 0) {
-                    for (int k = 0; k < col1; k++) {
-                        s += dArr[i][k];
-                    }
-                    s += (1 * col1);
-                    j = col1 - 1;
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < column; ++j) {
+            if (fullMatrix(dArr, row, column)[i][j] == 0) {
+                int k = 0;
+                while (k != column) {
+                    s = s + fullMatrix(dArr, row, column)[i][k];
+                    ++k;
                 }
-            }
-        }
-    }
-    if (column % 2 == 1) {
-        for (int i = 0; i < row; ++i) {
-            if (i % 2 == 0) {
-                for (int j = 0; j < col1 - 1; ++j) {
-                    if (dArr[i][j] == 0) {
-                        for (int k = 0; k < col1 - 1; k++) {
-                            s += dArr[i][k];
-                        }
-                        s += (1 * col1);
-                        j = col1 - 1;
-                    }
-                }
-            }
-            if (i % 2 == 1) {
-                for (int j = 0; j < col1; ++j) {
-                    if (dArr[i][j] == 0) {
-                        for (int k = 0; k < col1; k++) {
-                            s += dArr[i][k];
-                        }
-                        s += (1 * (col1 - 1));
-                        j = col1 - 1;
-                    }
-                }
+                j = column - 1;
             }
         }
     }
     cout << "The sum of all elements from rows with at least one 0 is " << s << endl;
 
-    int sedl = 0, minNum, maxNum;
-    if (column % 2 == 0) {
-        for (int i = 0; i < row; i += 2) {
-            for (int j = 0; j < col1 - 1; ++j) {
-                minNum = min(dArr[i][j], dArr[i][j + 1]);
-            }
-            for (int j = 0; j < col1; ++j) {
-                if (dArr[i][j] == minNum && dArr[i][j] < 1) {
-                    for (int i1 = 0; i1 < row - 1; i1 += 2) {
-                        maxNum = max(dArr[i1][j], dArr[i1 + 1][j]);
+
+    int amount = 0, minNum, maxNum;
+    for (int i = 0; i < row; ++i) {
+        minNum = 1;
+        for (int j = 0; j < column; ++j) {
+            minNum = min(fullMatrix(dArr, row, column)[i][j], minNum);
+        }
+        cout << "minNum is = " << minNum << endl;
+            for (int j = 0; j < column; ++j) {
+                hahaLOL:
+                if (fullMatrix(dArr, row, column)[i][j] == minNum) {
+                    maxNum = 1;
+                    for (int w = 0; w < row; ++w) {
+                        maxNum = max(fullMatrix(dArr, row, column)[w][j], maxNum);
                     }
-                    if (dArr[i][j] == maxNum && dArr[i][j] > 1)
-                        ++sedl;
+                    if (fullMatrix(dArr, row, column)[i][j] == minNum && fullMatrix(dArr, row, column)[i][j] == maxNum) {
+                        ++amount;
+                        cout << i << "   " << j << "       " << minNum << endl;
+                        ++j;
+                        goto hahaLOL;
+                    }
                 }
             }
-        }
-        for (int i = 1; i < row; i += 2) {
-            for (int j = 0; j < col1 - 1; ++j) {
-                minNum = min(dArr[i][j], dArr[i][j + 1]);
-            }
-            for (int j = 0; j < col1; ++j) {
-                if (dArr[i][j] == minNum && dArr[i][j] < 1) {
-                    for (int i1 = 1; i1 < row - 1; i1 += 2) {
-                        maxNum = max(dArr[i1][j], dArr[i1 + 1][j]);
-                    }
-                    if (dArr[i][j] == maxNum && dArr[i][j] > 1)
-                        ++sedl;
-                }
-            }
-        }
     }
-    if (column % 2 == 1) {
-        for (int i = 0; i < row; i += 2) {
-            for (int j = 0; j < col1 - 2; ++j) {
-                minNum = min(dArr[i][j], dArr[i][j + 1]);
-            }
-            for (int j = 0; j < col1 - 1; ++j) {
-                if (dArr[i][j] == minNum && dArr[i][j] < 1) {
-                    for (int i1 = 0; i1 < row - 1; i1 += 2) {
-                        maxNum = max(dArr[i1][j], dArr[i1 + 1][j]);
-                    }
-                    if (dArr[i][j] == maxNum && dArr[i][j] > 1)
-                        ++sedl;
-                }
-            }
-        }
-        for (int i = 1; i < row; i += 2) {
-            for (int j = 0; j < col1 - 1; ++j) {
-                minNum = min(dArr[i][j], dArr[i][j + 1]);
-            }
-            for (int j = 0; j < col1 - 1; ++j) {
-                if (dArr[i][j] == minNum && dArr[i][j] < 1) {
-                    for (int i1 = 1; i1 < row - 1; i1 += 2) {
-                        maxNum = max(dArr[i1][j], dArr[i1 + 1][j]);
-                    }
-                    if (dArr[i][j] == maxNum && dArr[i][j] > 1)
-                        ++sedl;
-                }
-            }
-        }
-    }
-    cout << endl;
-    cout << "The amount of saddle points is " << sedl;
-    cout << endl;
+    cout << amount;
     delete [] dArr;
     return 0;
 }
