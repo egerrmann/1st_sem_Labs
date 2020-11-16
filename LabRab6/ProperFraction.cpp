@@ -44,19 +44,7 @@ void ProperFraction::addition (const ProperFraction& frac) {
     numerator = sum;
     denominator = commonDenominator;
     fractionReduction();
-    cout << "Sum: ";
-    if (denominator > 0 && numerator > 0) {
-        cout << numerator << "/" << denominator;
-    }
-    if (denominator < 0 && numerator > 0) {
-        cout << "-" << numerator << "/" << (-1) * denominator;
-    }
-    if (denominator < 0 && numerator < 0) {
-        cout << (-1) * numerator << "/" << (-1) * denominator;
-    }
-    if (denominator > 0 && numerator < 0) {
-        cout << "-" << (-1) * numerator << "/" << denominator;
-    }
+    fraction();
 }
 
 void ProperFraction::multiply (const ProperFraction& frac) {
@@ -65,19 +53,7 @@ void ProperFraction::multiply (const ProperFraction& frac) {
     numerator = numeratorMult;
     denominator = denominatorMult;
     fractionReduction();
-    cout << "Multiply: ";
-    if (denominator > 0 && numerator > 0) {
-        cout << numerator << "/" << denominator;
-    }
-    if (denominator < 0 && numerator > 0) {
-        cout << "-" << numerator << "/" << (-1) * denominator;
-    }
-    if (denominator < 0 && numerator < 0) {
-        cout << (-1) * numerator << "/" << (-1) * denominator;
-    }
-    if (denominator > 0 && numerator < 0) {
-        cout << "-" << (-1) * numerator << "/" << denominator;
-    }
+    fraction();
 }
 
 void ProperFraction::division (const ProperFraction& frac) {
@@ -87,19 +63,7 @@ void ProperFraction::division (const ProperFraction& frac) {
     numerator *= frac.denominator;
     denominator *= frac.numerator;
     fractionReduction();
-    cout << "Division: ";
-    if (denominator > 0 && numerator > 0) {
-        cout << numerator << "/" << denominator;
-    }
-    if (denominator < 0 && numerator > 0) {
-        cout << "-" << numerator << "/" << (-1) * denominator;
-    }
-    if (denominator < 0 && numerator < 0) {
-        cout << (-1) * numerator << "/" << (-1) * denominator;
-    }
-    if (denominator > 0 && numerator < 0) {
-        cout << "-" << (-1) * numerator << "/" << denominator;
-    }
+    fraction();
 }
 void ProperFraction::fraction() {
     if (denominator == 0) {
