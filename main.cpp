@@ -51,7 +51,7 @@ int main() {
             fout << "the row of group beginning is " << i - repeat + 1 << endl;
             repeat = 1;
         }
-        if (i == pattern.size() - 1) {
+        if (i == pattern.size() - 1 && count(b, ' ') == b.size()) {
             fout << "Amount of repeats is " << repeat << ", ";
             fout << "the row of group beginning is " << i - repeat + 2 << endl;
         }

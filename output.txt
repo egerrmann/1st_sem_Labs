@@ -13,6 +13,6 @@ Amount of repeats is 1, the row of group beginning is 22
 Amount of repeats is 1, the row of group beginning is 24
 Amount of repeats is 1, the row of group beginning is 25
 Amount of repeats is 1, the row of group beginning is 26
-Amount of repeats is 4, the row of group beginning is 28
-Amount of repeats is 1, the row of group beginning is 32
-Amount of repeats is 2, the row of group beginning is 33
+Amount of repeats is 1, the row of group beginning is 28
+Amount of repeats is 6, the row of group beginning is 29
+Amount of repeats is 1, the row of group beginning is 35
