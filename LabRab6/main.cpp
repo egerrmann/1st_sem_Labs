@@ -16,6 +16,6 @@ int main() {
     cout << "denominator =" << endl;
     cin >> denom1;
     ProperFraction drob2 (num1, denom1);
-    drob.division(drob2);
+    drob.addition(drob2);
     return 0;
 }

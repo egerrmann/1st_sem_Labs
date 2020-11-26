@@ -3,6 +3,7 @@
 //
 #ifndef LABRAB6_PROPERFRACTION_H
 #define LABRAB6_PROPERFRACTION_H
+
 class ProperFraction {
 private:
     ProperFraction();
