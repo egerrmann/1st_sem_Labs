@@ -5,6 +5,7 @@
 #ifndef LABRAB7_CLASSES_H
 #define LABRAB7_CLASSES_H
 #include <iostream>
+#pragma once
 
 using namespace std;
 
