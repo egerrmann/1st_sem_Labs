@@ -28,7 +28,7 @@ int main() {
   b >> q;
   cout << q << endl;
 
-  a = b;
+  a = a;
 
   a.arrayOutput();
 

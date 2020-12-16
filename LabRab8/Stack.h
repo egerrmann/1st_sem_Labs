@@ -11,10 +11,11 @@ class StackArray {
   int *m_array;
   int m_size;
   int m_top;
+  int arrayCapacity = 1;
 
  public:
   StackArray() {
-    m_array = new int[0];
+    m_array = new int[arrayCapacity];
     m_size = 0;
     m_top = -1;
   }
@@ -25,6 +26,8 @@ class StackArray {
 
   void push(int element) {
     m_size++;
+    if (m_size > arrayCapacity)
+      arrayCapacity *= 2;
     cout << "Inserting " << element << endl;
     m_top++;
     m_array[m_top] = element;
@@ -77,14 +80,18 @@ class StackArray {
   }
 
   StackArray& operator = (StackArray const &second) {
+    if (*this == second)
+      return *this;
+    else {
     this->m_size = second.m_size;
-    delete [] this->m_array;
-    this->m_array = new int [second.m_size];
-    for (int i = 0; i < second.m_size; i++) {
-      this->m_array[i] = second.m_array[i];
+      delete[] this->m_array;
+      this->m_array = new int[second.m_size];
+      for (int i = 0; i < second.m_size; i++) {
+        this->m_array[i] = second.m_array[i];
+      }
+      this->m_top = second.m_top;
+      return *this;
     }
-    this->m_top = second.m_top;
-    return *this;
   }
 
   bool operator < (StackArray const &second) {
