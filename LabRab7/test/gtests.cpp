@@ -2,7 +2,11 @@
 // Created by Yahor on 26.11.2020.
 //
 #include <gtest/gtest.h>
-#include "classes.h"
+#include "Student.h"
+#include "StudentAfter1stSession.h"
+#include "StudentAfter2ndSession.h"
+
+using namespace std;
 
 int course, group;
 char *name;
