@@ -8,14 +8,14 @@ using namespace std;
 class StackArray {
 
  private:
-  int *m_array;
+  double *m_array;
   int m_size;
   int m_top;
   int arrayCapacity = 1;
 
  public:
   StackArray() {
-    m_array = new int[arrayCapacity];
+    m_array = new double [arrayCapacity];
     m_size = 0;
     m_top = -1;
   }
@@ -24,11 +24,11 @@ class StackArray {
     delete [] m_array;
   }
 
-  void push(int element) {
+  void push(double element) {
     m_size++;
     if (m_size > arrayCapacity)
       arrayCapacity *= 2;
-    cout << "Inserting " << element << endl;
+    //cout << "Inserting " << element << endl;
     m_top++;
     m_array[m_top] = element;
   }
@@ -40,33 +40,33 @@ class StackArray {
     cout << "\n";
   };
 
-  int pop() {
+  double pop() {
     m_size--;
     if (isEmpty())
     {
       cout << "Stack is empty" << endl;
       exit(EXIT_FAILURE);
     }
-    cout << "Removing " << peek() << endl;
+    //cout << "Removing " << peek() << endl;
     return m_array[m_top--];
   }
 
-  int peek() {
+  double peek() {
     if (!isEmpty())
       return m_array[m_top];
     else
       exit(EXIT_FAILURE);
   }
 
-  int size() {
+  double size() const {
     return m_top + 1;
   }
 
-  bool isEmpty() {
+  bool isEmpty() const {
     return m_top == -1;
   }
 
-  bool isFull() {
+  bool isFull() const {
     return m_top == m_size - 1;
   }
 
@@ -74,7 +74,7 @@ class StackArray {
     push(element);
   }
 
-  int operator >> (int &a) {
+  double operator >> (double &a) {
     a = pop();
     return a;
   }
@@ -85,7 +85,7 @@ class StackArray {
     else {
     this->m_size = second.m_size;
       delete[] this->m_array;
-      this->m_array = new int[second.m_size];
+      this->m_array = new double [second.m_size];
       for (int i = 0; i < second.m_size; i++) {
         this->m_array[i] = second.m_array[i];
       }
@@ -94,35 +94,35 @@ class StackArray {
     }
   }
 
-  bool operator < (StackArray const &second) {
+  bool operator < (StackArray const &second) const {
     if (this->m_size < second.m_size)
       return true;
     else
       return false;
   }
 
-  bool operator > (StackArray const &second) {
+  bool operator > (StackArray const &second) const {
     if (this->m_size > second.m_size)
       return true;
     else
       return false;
   }
 
-  bool operator == (StackArray const &second) {
+  bool operator == (StackArray const &second) const {
     if (this->m_size == second.m_size)
       return true;
     else
       return false;
   }
 
-  bool operator != (StackArray const &second) {
+  bool operator != (StackArray const &second) const {
     if (this->m_size != second.m_size)
       return true;
     else
       return false;
   }
 
-  int &operator [] (int n) {
+  double &operator [] (int n) {
     if (n < this->m_size || n >= 0) {
       return this->m_array[n];
     } else {
