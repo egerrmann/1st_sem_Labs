@@ -15,9 +15,7 @@ public:
     ProperFraction(int numeratorConstr, int denominatorConstr);
     void fractionReduction ();
     void addition (const ProperFraction& frac);
-
     void multiply (const ProperFraction& frac);
-
     void division (const ProperFraction& frac);
     void fraction();
 };

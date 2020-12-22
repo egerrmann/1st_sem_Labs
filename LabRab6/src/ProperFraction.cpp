@@ -22,6 +22,9 @@ ProperFraction::ProperFraction(const ProperFraction &fraction) {
     denominator = fraction.denominator;
 }
 ProperFraction::ProperFraction(int numeratorConstr, int denominatorConstr) {
+  if (denominatorConstr == 0) {
+    throw invalid_argument("Denominator can't be eq 0");
+  }
     numerator = numeratorConstr;
     denominator = denominatorConstr;
 };
