@@ -16,11 +16,4 @@ char *strncat(char *destination, const char *source, int n) {
 }
 
 int main() {
-    ifstream fin("input.txt");
-    int n;
-    fin >> n;
-    char x[] = "Hello, ";
-    char y[] = "Evgeniy";
-    cout << strncat(x, y, n);
-    return 0;
 }
