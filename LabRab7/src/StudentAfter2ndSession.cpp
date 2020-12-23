@@ -9,24 +9,17 @@ StudentAfter2ndSession::StudentAfter2ndSession (StudentAfter1stSession &name, in
   m_marks2 = marks;
 }
 
-void StudentAfter2ndSession::getMark2ndSession(int number) {
+int StudentAfter2ndSession::getMark2ndSession(int number) {
   if (number <= 5 && number >= 1) {
-    cout << m_marks2[number - 1] << endl;
+    return m_marks2[number - 1];
   }
   else
     cout << "There is no any mark on this position." << endl;
 }
 
-void  StudentAfter2ndSession::changeMark2ndSession(int markToChange) {
-  cout << "Insert mark that you want to put instead of " << m_marks2[markToChange - 1] << endl;
-  int a;
-  cin >> a;
-  m_marks2[markToChange - 1] = a;
-  cout << "Marks after 2nd session after change:" << endl;
-  for (int i = 0; i < 5; ++i) {
-    cout << m_marks2[i] << "   ";
-  }
-  cout << endl;
+int* StudentAfter2ndSession::changeMark2ndSession(int positionOfMark, int mark) {
+  m_marks2[positionOfMark - 1] = mark;
+  return m_marks2;
 }
 
 std::ostream &operator << (std::ostream &out, StudentAfter2ndSession &name) {
@@ -36,7 +29,7 @@ std::ostream &operator << (std::ostream &out, StudentAfter2ndSession &name) {
   for (int i = 0; i < 4; ++i) {
     out << " " << name.m_marks1[i];
   }
-  out << "; marks after 2nd session - ";
+  out << "; marks after 2nd session -";
   for (int i = 0; i < 5; ++i) {
     out << " " << name.m_marks2[i];
   }

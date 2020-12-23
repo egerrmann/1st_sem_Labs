@@ -10,24 +10,17 @@ StudentAfter1stSession::StudentAfter1stSession(Student &name, int *marks) : Stud
   m_marks1 = marks;
 }
 
-void StudentAfter1stSession::getMark1stSession (int number) {
+int StudentAfter1stSession::getMark1stSession (int number) {
   if (number <= 4 && number >= 1) {
-    cout << m_marks1[number - 1] << endl;
+    return m_marks1[number - 1];
   }
   else
     cout << "There is no any mark on this position." << endl;
 }
 
-void StudentAfter1stSession::changeMark1stSession(int markToChange) {
-  cout << "Insert mark that you want to put instead of " << m_marks1[markToChange - 1] << endl;
-  int a;
-  cin >> a;
-  m_marks1[markToChange - 1] = a;
-  cout << "Marks after 1st session after change:" << endl;
-  for (int i = 0; i < 4; ++i) {
-    cout << m_marks1[i] << "   ";
-  }
-  cout << endl;
+int* StudentAfter1stSession::changeMark1stSession(int positionOfMark, int mark) {
+  m_marks1[positionOfMark - 1] = mark;
+return m_marks1;
 };
 
 std::ostream &operator << (std::ostream &out, StudentAfter1stSession &name) {

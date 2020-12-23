@@ -19,11 +19,11 @@ class Student {
   Student(char *name, int course, int group);
   Student(const Student&);
   Student();
-  void setName();
+  void setName(char*);
   char* getName();
-  void setCourse();
+  void setCourse(int);
   int getCourse();
-  void setGroup();
+  void setGroup(int);
   int getGroup();
   int getId();
   int getRecordBookNum();

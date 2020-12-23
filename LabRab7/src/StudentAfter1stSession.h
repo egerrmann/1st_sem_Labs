@@ -11,8 +11,8 @@ class StudentAfter1stSession : public Student {
   int *m_marks1;
  public:
   StudentAfter1stSession (Student &, int *marks);
-  void getMark1stSession (int number);
-  void changeMark1stSession (int markToChange);
+  int getMark1stSession (int number);
+  int* changeMark1stSession (int positionOfMark, int mark);
   friend std::ostream &operator << (std::ostream &, StudentAfter1stSession &);
   double averageMark() override;
 };

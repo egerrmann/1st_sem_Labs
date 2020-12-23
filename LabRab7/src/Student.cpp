@@ -24,27 +24,15 @@ Student::Student(const Student &studentCopy) : m_id(countId), m_recordBookNum(co
   m_group = studentCopy.m_group;
 }
 
-void Student::setName() {
-  string name;
-  cout << "Insert a name:" << endl;
-  cin >> name;
-  char *name1 = new char[name.size()];
-  for (int i = 0; i < name.size(); ++i) {
-    name1[i] = name[i];
-    if (i == name.size() - 1)
-      name1[i + 1] = '\0';
-  }
-  m_name = name1;
+void Student::setName(char* name) {
+  m_name = name;
 }
 
 char* Student::getName() {
   return m_name;
 };
 
-void Student::setCourse() {
-  int course;
-  cout << "Insert a course:" << endl;
-  cin >> course;
+void Student::setCourse(int course) {
   m_course = course;
 }
 
@@ -52,10 +40,7 @@ int Student::getCourse() {
   return m_course;
 }
 
-void Student::setGroup() {
-  int group;
-  cout << "Insert a group:" << endl;
-  cin >> group;
+void Student::setGroup(int group) {
   m_group = group;
 }
 
